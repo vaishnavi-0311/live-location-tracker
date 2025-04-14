@@ -1,6 +1,14 @@
-.App {
+..App {
   text-align: center;
+  padding: 20px;
+  font-family: sans-serif;
 }
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
 
 .App-logo {
   height: 40vmin;
