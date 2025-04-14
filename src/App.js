@@ -54,25 +54,74 @@ function App() {
   return (
     <div className="App">
       <h1>Live Location Tracker</h1>
+  
       {(myLocation || friendLocation) ? (
-        <MapContainer center={myLocation || friendLocation} zoom={13} style={{ height: "500px", width: "100%" }}>
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {myLocation && (
-            <Marker position={myLocation}>
-              <Popup>You (India)</Popup>
-            </Marker>
-          )}
-          {friendLocation && (
-            <Marker position={friendLocation}>
-              <Popup>Friend (e.g., Dubai)</Popup>
-            </Marker>
-          )}
-        </MapContainer>
+        <>
+          <MapContainer center={myLocation || friendLocation} zoom={13} style={{ height: "500px", width: "100%" }}>
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {myLocation && (
+              <Marker position={myLocation}>
+                <Popup>You (India)</Popup>
+              </Marker>
+            )}
+            {friendLocation && (
+              <Marker position={friendLocation}>
+                <Popup>Friend (e.g., Dubai)</Popup>
+              </Marker>
+            )}
+          </MapContainer>
+  
+          {/* 🚀 ADD THESE BUTTONS BELOW THE MAP */}
+          <div style={{ marginTop: '20px' }}>
+            {myLocation && (
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://www.google.com/maps?q=${myLocation[0]},${myLocation[1]}`,
+                    '_blank'
+                  )
+                }
+                style={{
+                  padding: '10px 20px',
+                  background: '#28a745',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  marginRight: '10px'
+                }}
+              >
+                Open My Location in Maps
+              </button>
+            )}
+            {friendLocation && (
+              <button
+                onClick={() =>
+                  window.open(
+                    `https://www.google.com/maps?q=${friendLocation[0]},${friendLocation[1]}`,
+                    '_blank'
+                  )
+                }
+                style={{
+                  padding: '10px 20px',
+                  background: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  cursor: 'pointer'
+                }}
+              >
+                Open Friend’s Location in Maps
+              </button>
+            )}
+          </div>
+        </>
       ) : (
         <p>Loading map...</p>
       )}
     </div>
   );
+  
 }
 
 export default App;
